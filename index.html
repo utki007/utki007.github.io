@@ -3,87 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Utkarsh Narain - Portfolio Coming Soon</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            overflow: hidden;
-        }
+    <title>Portfolio - Utkarsh Narain</title>
+    <link rel="icon" type="image/x-icon" href="assets/icons/person.webp">
 
-        h1 {
-            font-size: 4em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            animation: fadeIn 1.5s ease-out;
-        }
+    <!-- Google Font for a clean, professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-        h2 {
-            font-size: 2em;
-            margin-bottom: 30px;
-            font-weight: 300;
-            animation: fadeIn 2s ease-out;
-        }
-
-        .message {
-            font-size: 1.2em;
-            opacity: 0;
-            animation: fadeInMessage 3s forwards;
-        }
-
-        .loader {
-            border: 10px solid rgba(255, 255, 255, 0.1);
-            border-top: 10px solid #ffcc00;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1.5s linear infinite;
-            margin-top: 20px;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes fadeInMessage {
-            0% { opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.9em;
-            color: #d1d1d1;
-            animation: fadeIn 4s ease-out;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <div>
-        <h1>Portfolio Coming Soon</h1>
-        <h2>Hey, I'm Utkarsh Narain, a Developer.</h2>
-        <p class="message">I am working hard to bring you something amazing. Stay tuned!</p>
-        <div class="loader"></div>
-        <div class="footer">Connect with me on <a href="https://github.com/utkarshnarain" target="_blank" style="color: #ffcc00;">GitHub</a> | <a href="https://www.linkedin.com/in/utkarsh-narain" target="_blank" style="color: #ffcc00;">LinkedIn</a></div>
+        <!-- Avatar Image (can be a GIF now) -->
+        <img src="assets/images/avatar.jpg" alt="Utkarsh Narain" class="avatar">
+
+        <h1>Hi <span>👋</span>, I'm Utkarsh Narain!</h1>
+
+        <!-- Bullet Points for main content -->
+        <div class="content-wrapper">
+            <ul>
+                <li>Experienced software developer with over 5 years in building innovative solutions.</li>
+                <li>Specialized in software development, data engineering, and machine learning.</li>
+                <li>Currently working on creating an outstanding portfolio to showcase my skills.</li>
+                <li>Stay tuned for updates on the exciting projects coming soon!</li>
+            </ul>
+        </div>
     </div>
+
+    <footer>
+        <p>Connect with me on:
+            <a href="https://github.com/utki007" target="_blank"><i class="fab fa-github"></i> GitHub</a> | 
+            <a href="https://www.linkedin.com/in/utkarsh-narain" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </p>
+    </footer>
 
 </body>
 </html>
