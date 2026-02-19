@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
-import { Bot, Eye, Hand, FolderGit, Calendar, MapPin, Users, ExternalLink, Play } from 'lucide-react'
+import { Bot, Eye, Hand, ScanFace, FolderGit, Calendar, MapPin, Users, ExternalLink, Play } from 'lucide-react'
 import HighlightedText from './HighlightedText'
 import { PROJECTS } from '../data'
 
-const PROJECT_ICONS = { 'discord-bot': Bot, 'eye-for-blind': Eye, 'gesture-recognition': Hand }
+const PROJECT_ICONS = { 'discord-bot': Bot, 'eye-for-blind': Eye, 'face-detection-recognition': ScanFace, 'gesture-recognition': Hand }
 
 export default function PersonalProjectSection() {
   return (

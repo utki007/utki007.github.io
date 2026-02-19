@@ -198,6 +198,18 @@ export const PROJECTS = [
     highlights: ['deep learning', 'caption generation', 'attention mechanism', 'Flickr8K'],
   },
   {
+    id: 'face-detection-recognition',
+    title: 'Face Detection & Recognition',
+    url: 'https://github.com/utki007/Face-Detection-Recognition',
+    demoPath: '/projects/face-detection-recognition',
+    teamSize: 'Individual',
+    duration: "2019",
+    location: 'VIT Vellore',
+    skills: ['Python', 'OpenCV', 'Computer Vision', 'LBPH', 'Haar Cascade'],
+    description: 'A Python pipeline for face detection and recognition. Haar Cascade for detection, LBPH for recognition. CLI for enrolling faces, training on collected data, and live recognition from camera.',
+    highlights: ['OpenCV', 'Haar Cascade', 'LBPH', 'face recognition', 'camera pipeline'],
+  },
+  {
     id: 'gesture-recognition',
     title: 'Gesture Recognition',
     teamSize: 'Group of two',

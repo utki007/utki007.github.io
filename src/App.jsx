@@ -11,6 +11,7 @@ import CertificationsPage from './pages/CertificationsPage'
 import ContactPage from './pages/ContactPage'
 import EyeForTheBlindDemoPage from './pages/EyeForTheBlindDemoPage'
 import DiscordBotDemoPage from './pages/DiscordBotDemoPage'
+import FaceDetectionDemoPage from './pages/FaceDetectionDemoPage'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/discord-bot" element={<DiscordBotDemoPage />} />
           <Route path="/projects/eye-for-the-blind" element={<EyeForTheBlindDemoPage />} />
+          <Route path="/projects/face-detection-recognition" element={<FaceDetectionDemoPage />} />
           <Route path="/experience" element={<ExperiencePage />} />
           <Route path="/education" element={<EducationPage />} />
           <Route path="/skills" element={<SkillsPage />} />
