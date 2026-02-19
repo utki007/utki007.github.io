@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Eye, ExternalLink, Cpu, Sparkles, ArrowLeft, Volume2, VolumeX, Loader2 } from 'lucide-react'
@@ -43,10 +43,10 @@ function CaptionCard({ sample, index }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
-      className="group rounded-xl border border-slate-700/50 bg-slate-800/50 overflow-hidden hover:border-accent/40 transition-colors"
+      transition={{ duration: 0.35, delay: 0.15 + index * 0.05 }}
+      className="group rounded-xl border border-slate-700/50 bg-slate-800/60 overflow-hidden hover:border-slate-600/60 transition-colors"
     >
       <div className="relative aspect-square overflow-hidden bg-slate-800">
         <img
@@ -96,45 +96,82 @@ function CaptionCard({ sample, index }) {
 }
 
 export default function EyeForTheBlindDemoPage() {
-  return (
-    <div className="min-h-screen pt-8 pb-24 px-4">
-      <div className="max-w-4xl mx-auto">
-        <Link
-          to="/projects"
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-accent text-sm mb-8 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Projects
-        </Link>
+  const [barSticky, setBarSticky] = useState(false)
+  const sentinelRef = useRef(null)
 
+  useEffect(() => {
+    const el = sentinelRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => setBarSticky(!e.isIntersecting),
+      { threshold: 0 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <div className="min-h-screen pt-8 pb-28 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div ref={sentinelRef} className="h-px w-full" aria-hidden />
+        {/* Nav bar */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className={`sticky top-14 sm:top-16 z-40 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-slate-700/50 backdrop-blur-sm ${barSticky ? 'bg-slate-800/95' : 'bg-slate-800/40'}`}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          transition={{ duration: 0.4 }}
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/20 mb-4">
-            <Eye className="w-8 h-8 text-accent" />
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-3">Eye for the Blind</h1>
-          <p className="text-slate-400 max-w-2xl mx-auto mb-6">
-            Image captioning model that describes photos in plain language. 
-            Click <span className="text-accent font-medium">Listen</span> on any image to hear its description.
-          </p>
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-accent text-sm font-medium transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" aria-hidden />
+            Back to Projects
+          </Link>
+          <a
+            href="https://github.com/utki007/eye-for-the-blind"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent/20 text-accent hover:bg-accent/30 border border-accent/40 text-sm font-medium transition-colors"
+          >
+            View on GitHub
+            <ExternalLink className="w-3.5 h-3.5" aria-hidden />
+          </a>
         </motion.div>
 
-        {/* Try it - Sample outputs first for intuitive flow */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
+        {/* Hero */}
+        <motion.header
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-12"
+          transition={{ duration: 0.4, delay: 0.05 }}
+          className="relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-800/40 px-6 py-10 sm:px-10 sm:py-12 text-center"
         >
-          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-100 mb-2">
+          <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent pointer-events-none" aria-hidden />
+          <div className="relative">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-accent/20 border border-accent/20 mb-5">
+              <Eye className="w-10 h-10 text-accent" />
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-3">Eye for the Blind</h1>
+            <p className="text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">
+              Image captioning model that describes photos in plain language.
+              Click <span className="text-accent font-medium">Listen</span> on any image to hear its description.
+            </p>
+          </div>
+        </motion.header>
+
+        {/* Try it */}
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="rounded-2xl border border-slate-700/50 bg-slate-800/40 p-6 sm:p-8"
+        >
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">Demo</p>
+          <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-100 mb-1">
             <Sparkles className="w-5 h-5 text-accent" />
             Try it
           </h2>
-          <p className="text-slate-400 text-sm mb-6">
+          <p className="text-slate-500 text-sm mb-6">
             Click &quot;Listen to description&quot; to hear each image described — simulating how the model helps visually impaired users.
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -146,50 +183,33 @@ export default function EyeForTheBlindDemoPage() {
 
         {/* How it works */}
         <motion.section
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-12 rounded-xl border border-slate-700/50 bg-slate-800/50 p-6"
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="rounded-2xl border border-slate-700/50 bg-slate-800/40 p-6 sm:p-8"
         >
-          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-100 mb-4">
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">Overview</p>
+          <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-100 mb-4">
             <Cpu className="w-5 h-5 text-accent" />
             How it works
           </h2>
-          <p className="text-slate-300 text-sm leading-relaxed mb-4">
-            A <strong className="text-accentLight">CNN encoder</strong> extracts visual features from the image. 
-            An <strong className="text-accentLight">RNN decoder</strong> with <strong className="text-accentLight">attention</strong> 
-            generates the caption word-by-word. The caption is then converted to speech so users can hear the description. 
+          <p className="text-slate-300 text-sm leading-relaxed mb-5">
+            A <strong className="text-accentLight">CNN encoder</strong> extracts visual features from the image.
+            An <strong className="text-accentLight">RNN decoder</strong> with <strong className="text-accentLight">attention</strong>
+            generates the caption word-by-word. The caption is then converted to speech so users can hear the description.
             Trained on the Flickr8K dataset.
           </p>
           <div className="flex flex-wrap gap-2">
             {['CNN Encoder', 'RNN Decoder', 'Attention', 'Flickr8K', 'Text-to-Speech'].map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 rounded-lg bg-slate-700/50 text-slate-300 text-xs font-medium"
+                className="px-3.5 py-2 rounded-lg bg-slate-700/60 text-slate-300 text-sm font-medium border border-slate-600/40"
               >
                 {tag}
               </span>
             ))}
           </div>
         </motion.section>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center"
-        >
-          <a
-            href="https://github.com/utki007/eye-for-the-blind"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent/20 text-accent hover:bg-accent/30 border border-accent/40 font-medium transition-colors"
-          >
-            View on GitHub
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </motion.div>
       </div>
     </div>
   )
