@@ -137,6 +137,7 @@ export const EDUCATION = [
   {
     id: 'nu',
     school: 'Northwestern University',
+    logoUrl: '/logos/northwestern.png',
     location: 'Evanston, Illinois',
     period: 'September 2025 – December 2026',
     degree: 'Master of Science in Artificial Intelligence',
@@ -148,7 +149,8 @@ export const EDUCATION = [
   {
     id: 'iiit',
     school: 'International Institute of Information Technology',
-    location: 'India',
+    logoUrl: '/logos/iiitb.png',
+    location: 'Bangalore, India',
     period: 'May 2020 – June 2021',
     degree: 'Post Graduate Diploma in Data Science',
     gpa: '3.76 / 4.0',
@@ -159,6 +161,7 @@ export const EDUCATION = [
   {
     id: 'vit',
     school: 'Vellore Institute of Technology',
+    logoUrl: '/logos/vit.png',
     location: 'Vellore, India',
     period: 'June 2015 – May 2019',
     degree: 'Bachelor of Technology in Information Technology',
