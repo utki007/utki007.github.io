@@ -32,14 +32,3 @@ body {
 .gradient-text {
   @apply bg-gradient-to-r from-accent to-accentLight bg-clip-text text-transparent;
 }
-
-.glow {
-  box-shadow: 0 0 40px rgba(0, 112, 243, 0.15);
-}
-
-/* Placeholder: interactive 3D / particle canvas can be mounted here via ref */
-.particle-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}

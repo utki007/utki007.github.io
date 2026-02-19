@@ -106,8 +106,8 @@ export default function Hero({ onExploreClick }) {
           <span className="text-slate-300">Software Development</span>, and{' '}
           <span className="text-slate-300">DevOps</span>, I’ve worked at Virtusa using Python, Power BI, Java,
           and AngularJS to deliver high-quality solutions. I’ve optimized code, analyzed data, and developed
-          a popular Discord bot with <span className="text-accentLight font-medium">195K users</span> across{' '}
-          <span className="text-accentLight font-medium">460+ servers</span>. Recognized for excellence in
+          a popular Discord bot with <span className="text-accentLight font-medium">300K+ users</span> across{' '}
+          <span className="text-accentLight font-medium">1,000+ servers</span>. Recognized for excellence in
           project delivery and client satisfaction, I’m passionate about using technology to drive results and
           improve user experiences.
         </motion.p>
