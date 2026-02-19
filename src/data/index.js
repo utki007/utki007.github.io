@@ -168,7 +168,11 @@ export const EDUCATION = [
     gpa: '8.49 / 10',
     skills: ['Artificial Intelligence', 'Machine Learning', 'Soft Computing', 'Web Technology'],
     coursework: ['Artificial Intelligence', 'Machine Learning', 'Soft Computing', 'Web Technology'],
-    projects: ['Face Recognition System', 'Food Safety Portal', 'Formula One Dashboard'],
+    projects: [
+      { name: 'Face Detection & Recognition', link: '/projects/face-detection-recognition' },
+      'Food Safety Portal',
+      'Formula One Dashboard',
+    ],
   },
 ]
 

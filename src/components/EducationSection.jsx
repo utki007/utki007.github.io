@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { GraduationCap, MapPin, Calendar, BookOpen, FolderGit, ChevronDown, Award } from 'lucide-react'
+import { GraduationCap, MapPin, Calendar, BookOpen, FolderGit, ChevronDown, Award, ExternalLink } from 'lucide-react'
 import { EDUCATION } from '../data'
 
 function SchoolLogo({ logoUrl, school, className }) {
@@ -124,11 +125,25 @@ function EducationCard({ item, index }) {
                           Projects
                         </h4>
                         <ul className="list-disc pl-5 text-slate-300 text-[15px] leading-relaxed space-y-3">
-                          {item.projects.map((p) => (
-                            <li key={p} className="pl-1">
-                              {p}
-                            </li>
-                          ))}
+                          {item.projects.map((p) => {
+                            const name = typeof p === 'object' ? p.name : p
+                            const link = typeof p === 'object' ? p.link : null
+                            return (
+                              <li key={name} className="pl-1">
+                                {link ? (
+                                  <Link
+                                    to={link}
+                                    className="inline-flex items-center gap-1.5 text-accent hover:text-accentLight transition-colors"
+                                  >
+                                    {name}
+                                    <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                                  </Link>
+                                ) : (
+                                  name
+                                )}
+                              </li>
+                            )
+                          })}
                         </ul>
                       </div>
                     )}
