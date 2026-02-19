@@ -5,6 +5,8 @@ export default function HomePage() {
   const navigate = useNavigate()
 
   return (
-    <Hero onExploreClick={() => navigate('/experience')} />
+    <div className="-mt-14 sm:-mt-16 pt-14 sm:pt-16">
+      <Hero onExploreClick={() => navigate('/experience')} />
+    </div>
   )
 }
