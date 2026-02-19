@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Mail, Linkedin, Github, FileText, ExternalLink, Download, MessageCircle } from 'lucide-react'
+import { Mail, Linkedin, Github, FileText, ExternalLink, Download } from 'lucide-react'
 
 const RESUME_URL = '/Utkarsh Narain.pdf'
 
@@ -8,8 +8,8 @@ export default function Footer() {
     <footer className="fixed bottom-0 left-0 right-0 z-40 border-t border-slate-700/50 bg-dark/95 backdrop-blur-sm py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
       <div className="w-full">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
-          {/* Name & Copyright */}
-          <div>
+          {/* Name & Copyright — hidden on small screens */}
+          <div className="hidden sm:block">
             <p className="font-semibold text-slate-100">Utkarsh Narain</p>
             <p className="text-slate-500 text-sm mt-0.5">
               © {new Date().getFullYear()} All rights reserved.
@@ -17,12 +17,12 @@ export default function Footer() {
           </div>
 
           {/* Mobile / kiosk: single Contact button */}
-          <div className="flex sm:hidden">
+          <div className="flex justify-center sm:hidden">
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent/20 text-accent hover:bg-accent/30 border border-accent/40 font-medium text-sm transition-colors"
             >
-              <MessageCircle className="w-4 h-4" />
+              <Mail className="w-4 h-4" aria-hidden />
               Contact
             </Link>
           </div>
