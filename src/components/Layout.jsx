@@ -5,7 +5,7 @@ import ParticleBackground from './ParticleBackground'
 
 export default function Layout() {
   return (
-    <div className="min-h-screen bg-dark flex flex-col relative">
+    <div className="min-h-screen bg-dark flex flex-col relative overflow-x-hidden">
       <ParticleBackground />
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />

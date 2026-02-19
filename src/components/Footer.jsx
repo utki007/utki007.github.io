@@ -1,12 +1,13 @@
-import { Mail, Linkedin, Github, FileText, ExternalLink, Download } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Mail, Linkedin, Github, FileText, ExternalLink, Download, MessageCircle } from 'lucide-react'
 
 const RESUME_URL = '/Utkarsh Narain.pdf'
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-40 border-t border-slate-700/50 bg-dark/95 backdrop-blur-sm py-10 px-4 sm:px-6 lg:px-8">
+    <footer className="fixed bottom-0 left-0 right-0 z-40 border-t border-slate-700/50 bg-dark/95 backdrop-blur-sm py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
       <div className="w-full">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
           {/* Name & Copyright */}
           <div>
             <p className="font-semibold text-slate-100">Utkarsh Narain</p>
@@ -15,9 +16,19 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Contact & Resume */}
-          <div className="flex flex-col sm:items-end gap-3">
-            {/* Contact links */}
+          {/* Mobile / kiosk: single Contact button */}
+          <div className="flex sm:hidden">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent/20 text-accent hover:bg-accent/30 border border-accent/40 font-medium text-sm transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" />
+              Contact
+            </Link>
+          </div>
+
+          {/* Desktop: Contact & Resume */}
+          <div className="hidden sm:flex flex-col sm:items-end gap-3">
             <div className="flex flex-wrap gap-4">
               <a
                 href="mailto:utkarshnarain007@gmail.com"
@@ -45,7 +56,6 @@ export default function Footer() {
                 GitHub
               </a>
             </div>
-            {/* Resume */}
             <div className="flex items-center gap-3">
               <a
                 href={RESUME_URL}

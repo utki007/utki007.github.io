@@ -15,9 +15,9 @@ export default function Hero({ onExploreClick }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[75vh] flex items-center justify-center px-4 py-12 sm:py-16 overflow-hidden"
+      className="relative min-h-[65vh] sm:min-h-[75vh] flex items-center justify-center px-4 py-10 sm:py-16 overflow-hidden"
     >
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
+      <div className="relative z-10 max-w-3xl mx-auto text-center w-full min-w-0">
         <motion.p
           className="text-accent font-medium text-sm uppercase tracking-wider mb-3"
           initial={{ opacity: 0, y: 16 }}
@@ -35,7 +35,7 @@ export default function Hero({ onExploreClick }) {
           Utkarsh Narain
         </motion.h1>
         <motion.p
-          className="text-slate-400 text-sm sm:text-base leading-relaxed mb-4 max-w-2xl mx-auto"
+          className="text-slate-400 text-sm sm:text-base leading-relaxed mb-4 max-w-2xl mx-auto break-words"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
