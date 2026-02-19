@@ -225,8 +225,9 @@ export default function TechnicalSkillsSection() {
               })}
             </div>
           ) : (
-            <div key="source" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div key="source" className="space-y-6">
               {Object.entries(bySource).map(([source, items], i) => {
+                if (items.length === 0) return null
                 const config = sourceConfig[source] || sourceConfig.experience
                 const Icon = config?.icon || Briefcase
                 return (
@@ -234,22 +235,64 @@ export default function TechnicalSkillsSection() {
                     key={source}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                    className="rounded-xl border border-slate-700/50 bg-slate-800/50 p-5"
+                    transition={{ delay: i * 0.05 }}
+                    className="rounded-xl border border-slate-700/50 bg-slate-800/50 p-5 sm:p-6"
                   >
-                    <div className={`flex items-center gap-2 mb-4 px-2 py-1.5 rounded-lg border w-fit ${config?.color || ''}`}>
-                      <Icon className="w-5 h-5" />
-                      <h3 className="font-semibold text-sm">{config?.label || source}</h3>
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className={`p-2 rounded-lg ${config?.color || 'bg-accent/20'}`}>
+                        <Icon className="w-5 h-5" />
+                      </span>
+                      <h3 className="text-lg font-semibold text-slate-100">{config?.label || source}</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {items.map(({ name }) => (
-                        <span
-                          key={name}
-                          className="px-3 py-1.5 rounded-lg bg-slate-700/50 text-slate-300 text-sm"
-                        >
-                          {name}
-                        </span>
-                      ))}
+                      {items.map(({ name, data }) => {
+                        const isExpanded = expandedSkill === name
+                        return (
+                          <div key={name} className="relative">
+                            <button
+                              type="button"
+                              onClick={() => setExpandedSkill(isExpanded ? null : name)}
+                              className="group flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700/70 text-slate-200 text-sm font-medium transition-colors border border-transparent hover:border-accent/30"
+                            >
+                              {name}
+                              <ChevronDown
+                                className={`w-4 h-4 text-slate-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                              />
+                            </button>
+                            {isExpanded && data && (
+                              <div className="absolute top-full left-0 mt-1 z-10 min-w-[240px] rounded-lg border border-slate-600 bg-slate-800 p-3 shadow-xl">
+                                <p className="text-slate-400 text-xs mb-2">Used in:</p>
+                                <ul className="space-y-1.5 text-sm">
+                                  {(data.sources?.experience || []).map((l) => (
+                                    <li key={l} className="flex items-center gap-2 text-emerald-400">
+                                      <Briefcase className="w-3.5 h-3.5 shrink-0" />
+                                      {l}
+                                    </li>
+                                  ))}
+                                  {(data.sources?.education || []).map((l) => (
+                                    <li key={l} className="flex items-center gap-2 text-amber-400">
+                                      <GraduationCap className="w-3.5 h-3.5 shrink-0" />
+                                      {l}
+                                    </li>
+                                  ))}
+                                  {(data.sources?.projects || []).map((l) => (
+                                    <li key={l} className="flex items-center gap-2 text-violet-400">
+                                      <FolderGit className="w-3.5 h-3.5 shrink-0" />
+                                      {l}
+                                    </li>
+                                  ))}
+                                  {(data.sources?.certifications || []).map((l) => (
+                                    <li key={l} className="flex items-center gap-2 text-sky-400">
+                                      <Award className="w-3.5 h-3.5 shrink-0" />
+                                      {l}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                        )
+                      })}
                     </div>
                   </motion.div>
                 )
