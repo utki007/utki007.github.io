@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Briefcase, GraduationCap, FolderGit, Award, ChevronDown, Sparkles, Code, Database, Wrench } from 'lucide-react'
 import { EXPERIENCE, EDUCATION, PROJECTS, CERTIFICATIONS } from '../data'
@@ -37,10 +37,10 @@ function aggregateSkills() {
   return skillMap
 }
 
-// Group skills by category for intuitive display
+// Group skills by category for intuitive display (Other skills merge into Tools & Practices)
 const CATEGORIES = [
   { key: 'languages', label: 'Languages & Core', icon: Code, skills: ['C++', 'Java', 'JavaScript', 'Python', 'HTML', 'CSS', 'SQL'] },
-  { key: 'ml-ai', label: 'Machine Learning & AI', icon: Sparkles, skills: ['Machine Learning', 'Deep Learning', 'Generative AI', 'NLP', 'Computer Vision', 'Image Captioning', 'Attention', 'CNN', 'Artificial Intelligence', 'Soft Computing'] },
+  { key: 'ml-ai', label: 'Machine Learning & AI', icon: Sparkles, skills: ['Machine Learning', 'Deep Learning', 'Generative AI', 'NLP', 'Computer Vision', 'Image Captioning', 'Attention', 'CNN', 'Artificial Intelligence', 'Soft Computing', 'OpenCV', 'LBPH', 'Haar Cascade'] },
   { key: 'fullstack', label: 'Full-Stack & Web', icon: Code, skills: ['AngularJS', 'SpringBoot', 'MongoDB', 'Django', 'Bootstrap', 'Full-Stack', 'Responsive Design', 'Media Queries', 'Web Technology', 'Node.js'] },
   { key: 'data', label: 'Data & Analytics', icon: Database, skills: ['Power BI', 'Excel', 'Business Intelligence', 'Tableau', 'Data Analysis', 'Data Validation', 'Data Warehousing', 'Data Mining', 'Data Cleaning', 'Data Structures'] },
   { key: 'tools', label: 'Tools & Practices', icon: Wrench, skills: ['Agile', 'Clean Code', 'Design Patterns', 'Algorithms', 'OOP', 'Memory Management', 'Pointers', 'Automation', 'Discord API', 'Moderation', 'Google Cloud'] },
@@ -57,31 +57,35 @@ export default function TechnicalSkillsSection() {
   const [view, setView] = useState('category') // 'category' | 'source'
   const [expandedSkill, setExpandedSkill] = useState(null)
 
+  useEffect(() => {
+    const onScroll = () => setExpandedSkill(null)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const skillMap = aggregateSkills()
 
-  // Build categorized skills
+  // Build categorized skills; unassigned skills merge into Tools & Practices
   const assigned = new Set()
-  const categorizedSkills = [
-    ...CATEGORIES.map((cat) => {
-      const items = cat.skills
-        .filter((s) => skillMap.has(s))
-        .map((s) => {
-          assigned.add(s)
-          return { name: s, data: skillMap.get(s) }
-        })
-        .sort((a, b) => b.data.count - a.data.count)
-      return { ...cat, items }
-    }).filter((cat) => cat.items.length > 0),
-    {
-      key: 'other',
-      label: 'Other',
-      icon: Wrench,
-      items: [...skillMap.entries()]
-        .filter(([s]) => !assigned.has(s))
-        .map(([name, data]) => ({ name, data }))
-        .sort((a, b) => b.data.count - a.data.count),
-    },
-  ].filter((cat) => cat.items.length > 0)
+  const categorizedSkills = CATEGORIES.map((cat) => {
+    const fromCategory = cat.skills
+      .filter((s) => skillMap.has(s))
+      .map((s) => {
+        assigned.add(s)
+        return { name: s, data: skillMap.get(s) }
+      })
+    // Merge unassigned skills into Tools & Practices
+    const extra = cat.key === 'tools'
+      ? [...skillMap.entries()]
+          .filter(([s]) => !assigned.has(s))
+          .map(([name, data]) => {
+            assigned.add(name)
+            return { name, data }
+          })
+      : []
+    const items = [...fromCategory, ...extra].sort((a, b) => b.data.count - a.data.count)
+    return { ...cat, items }
+  }).filter((cat) => cat.items.length > 0)
 
   // Build by-source view
   const bySource = {
@@ -185,7 +189,7 @@ export default function TechnicalSkillsSection() {
                           </button>
                           {isExpanded && (
                               <div
-                                className="absolute top-full left-0 mt-1 z-10 min-w-[240px] rounded-lg border border-slate-600 bg-slate-800 p-3 shadow-xl"
+                                className="absolute top-full left-0 mt-1 z-50 min-w-[240px] rounded-lg border border-slate-600 bg-slate-800 p-3 shadow-xl"
                               >
                                 <p className="text-slate-400 text-xs mb-2">Used in:</p>
                                 <ul className="space-y-1.5 text-sm">
@@ -260,7 +264,7 @@ export default function TechnicalSkillsSection() {
                               />
                             </button>
                             {isExpanded && data && (
-                              <div className="absolute top-full left-0 mt-1 z-10 min-w-[240px] rounded-lg border border-slate-600 bg-slate-800 p-3 shadow-xl">
+                              <div className="absolute top-full left-0 mt-1 z-50 min-w-[240px] rounded-lg border border-slate-600 bg-slate-800 p-3 shadow-xl">
                                 <p className="text-slate-400 text-xs mb-2">Used in:</p>
                                 <ul className="space-y-1.5 text-sm">
                                   {(data.sources?.experience || []).map((l) => (
