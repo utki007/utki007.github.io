@@ -9,6 +9,7 @@ import EducationPage from './pages/EducationPage'
 import SkillsPage from './pages/SkillsPage'
 import CertificationsPage from './pages/CertificationsPage'
 import ContactPage from './pages/ContactPage'
+import ResumePage from './pages/ResumePage'
 import EyeForTheBlindDemoPage from './pages/EyeForTheBlindDemoPage'
 import DiscordBotDemoPage from './pages/DiscordBotDemoPage'
 import FaceDetectionDemoPage from './pages/FaceDetectionDemoPage'
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/skills" element={<SkillsPage />} />
           <Route path="/certifications" element={<CertificationsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/resume" element={<ResumePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

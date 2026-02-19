@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Mail, Linkedin, Github, FileText, ExternalLink, Download } from 'lucide-react'
+import { Mail, Linkedin, Github, FileText, Download } from 'lucide-react'
 
 const RESUME_URL = '/Utkarsh Narain.pdf'
 
@@ -57,16 +57,13 @@ export default function Footer() {
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <a
-                href={RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/resume"
                 className="flex items-center gap-2 text-accent hover:text-accentLight text-sm font-medium transition-colors"
               >
                 <FileText className="w-4 h-4" />
                 View resume
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+              </Link>
               <a
                 href={RESUME_URL}
                 download="Utkarsh-Narain-Resume.pdf"
