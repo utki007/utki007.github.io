@@ -206,7 +206,7 @@ export const PROJECTS = [
     duration: "2019",
     location: 'VIT Vellore',
     skills: ['Python', 'OpenCV', 'Computer Vision', 'LBPH', 'Haar Cascade'],
-    description: 'A Python pipeline for face detection and recognition. Haar Cascade for detection, LBPH for recognition. CLI for enrolling faces, training on collected data, and live recognition from camera.',
+    description: 'Education project at Vellore Institute of Technology (VIT Vellore). A Python pipeline for face detection and recognition—Haar Cascade for detection, LBPH for recognition. CLI for enrolling faces, training on collected data, and live recognition from camera.',
     highlights: ['OpenCV', 'Haar Cascade', 'LBPH', 'face recognition', 'camera pipeline'],
   },
   {
