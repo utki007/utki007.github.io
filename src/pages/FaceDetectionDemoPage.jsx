@@ -26,7 +26,7 @@ export default function FaceDetectionDemoPage() {
           <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-3">Face Detection & Recognition</h1>
           <p className="text-slate-400 max-w-2xl mx-auto mb-6">
             A Python pipeline for face detection and recognition using OpenCV. Haar Cascade for detection, LBPH for recognition.
-            Built in 2019 as an education project at Vellore Institute of Technology (VIT Vellore).
+            Built in Dec 2018 as an education project at Vellore Institute of Technology (VIT Vellore).
           </p>
           <div className="flex justify-center gap-8 text-slate-500 text-sm">
             <span><strong className="text-accent">Haar Cascade</strong> — detection</span>
@@ -126,7 +126,7 @@ export default function FaceDetectionDemoPage() {
           className="flex justify-center"
         >
           <a
-            href="https://github.com/utki007/Face-Detection-Recognition"
+            href="https://github.com/utki007/Face-Detection-And-Recognition"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent/20 text-accent hover:bg-accent/30 border border-accent/40 font-medium transition-colors"

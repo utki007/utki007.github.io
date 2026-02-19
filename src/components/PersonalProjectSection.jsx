@@ -20,7 +20,9 @@ export default function PersonalProjectSection() {
           Projects
         </motion.h2>
         <div className="space-y-6">
-          {PROJECTS.map((project, i) => {
+          {[...PROJECTS]
+            .sort((a, b) => (b.sortDate || '').localeCompare(a.sortDate || ''))
+            .map((project, i) => {
             const ProjectIcon = PROJECT_ICONS[project.id] || FolderGit
             return (
             <motion.article
