@@ -9,7 +9,7 @@ export default function Layout() {
       <ParticleBackground />
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-1 pb-32">
+        <main className="flex-1 pb-32 pt-14 sm:pt-16">
           <Outlet />
         </main>
         <Footer />
